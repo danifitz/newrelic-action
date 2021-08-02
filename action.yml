@@ -1,4 +1,4 @@
-name: 'New Relic Github Actions Analytics'
+name: 'newrelic-actions-analytics'
 description: 'Stores the result of Github Actions in New Relic for CI/CD pipeline analytics'
 inputs:
   who-to-greet:  # id of input
