@@ -6293,38 +6293,34 @@ try {
   core.setOutput("time", time);
 
   const context = JSON.stringify(github.context, undefined, 2);
-  // console.log(`The context: ${context}`);
-  
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  // console.log(`The event payload: ${payload}`);
+  console.log(`The context: ${context}`);
 
   const eventType = core.getInput('event-name');
   const nrEvent = {
     // set the new relic event type
     eventType: eventType,
     // other data points
-    event: context.eventName,
-    sha: context.sha,
-    ref: context.ref,
-    workflow: context.workflow,
-    action: context.action,
-    actor: context.actor,
-    job: context.job,
-    runNumber: context.runNumber,
-    runId: context.runId,
-    pusherEmail: payload.pusher.email,
-    pusherName: payload.pusher.name,
-    repositoryUrl: payload.repository.url,
-    commitAuthorEmail: payload.head_commit.author.email,
-    commitAuthorName: payload.head_commit.author.name,
-    commitAuthorUsername: payload.head_commit.author.username,
-    commitCommitterEmail: payload.head_commit.committer.email,
-    commitCommitterName: payload.head_commit.committer.name,
-    commitCommitterUsername: payload.head_commit.committer.username,
-    commitId: payload.head_commit.id,
-    commitMessage: payload.head_commit.message,
-    commitUrl: payload.head_commit.url
+    event: github.context.eventName,
+    sha: github.context.sha,
+    ref: github.context.ref,
+    workflow: github.context.workflow,
+    action: github.context.action,
+    actor: github.context.actor,
+    job: github.context.job,
+    runNumber: github.context.runNumber,
+    runId: github.context.runId,
+    pusherEmail: github.context.payload.pusher.email,
+    pusherName: github.context.payload.pusher.name,
+    repositoryUrl: github.context.payload.repository.url,
+    commitAuthorEmail: github.context.payload.head_commit.author.email,
+    commitAuthorName: github.context.payload.head_commit.author.name,
+    commitAuthorUsername: github.context.payload.head_commit.author.username,
+    commitCommitterEmail: github.context.payload.head_commit.committer.email,
+    commitCommitterName: github.context.payload.head_commit.committer.name,
+    commitCommitterUsername: github.context.payload.head_commit.committer.username,
+    commitId: github.context.payload.head_commit.id,
+    commitMessage: github.context.payload.head_commit.message,
+    commitUrl: github.context.payload.head_commit.url
     // TODO: add commit timestamp - convert 2021-08-02T16:31:18+01:00 to unix epoch
   }
 
