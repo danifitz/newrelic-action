@@ -11,14 +11,15 @@ try {
   core.setOutput("time", time);
 
   const context = JSON.stringify(github.context, undefined, 2);
-  console.log(`The context: ${context}`);
+  // console.log(`The context: ${context}`);
   
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  // console.log(`The event payload: ${payload}`);
 
   const eventType = core.getInput('event-name');
   const nrEvent = {
+    // set the new relic event type
     eventType: eventType,
     // other data points
     event: context.eventName,
