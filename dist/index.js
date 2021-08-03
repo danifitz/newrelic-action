@@ -6286,7 +6286,8 @@ const https = __nccwpck_require__(211);
 try {
   // get the New Relic region and account ID
   const region = core.getInput('region');
-  const accountId = core.getInout('account-id');
+  const accountId = core.getInput('account-id');
+  const insertKey = core.getInput('insert-key');
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
@@ -6327,13 +6328,13 @@ try {
     // TODO: add commit timestamp - convert 2021-08-02T16:31:18+01:00 to unix epoch
   }
 
-  sendToNewRelic(region, accountId, nrEvent);
+  sendToNewRelic(region, accountId, insertKey, nrEvent);
 
 } catch (error) {
   core.setFailed(error.message);
 }
 
-const sendToNewRelic = (region, accountId, event) => {
+const sendToNewRelic = (region, accountId, insertKey, event) => {
   const data = new TextEncoder().encode(JSON.stringify(event));
   
   // set the correct URL for Event API depending on region
@@ -6346,7 +6347,8 @@ const sendToNewRelic = (region, accountId, event) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Content-Length': data.length
+      'Content-Length': data.length,
+      'X-Insert-Key': insertKey
     }
   }
   
