@@ -6285,6 +6285,7 @@ const https = __nccwpck_require__(211);
 
 const sendToNewRelic = (region, accountId, insertKey, event) => {
   const data = new TextEncoder().encode(JSON.stringify(event));
+  console.log(`Sending event data to nr: ${JSON.stringify(event)}`);
   
   // set the correct URL for Event API depending on region
   const nrUrl = region == 'EU' ? 'insights-collector.eu01.nr-data.net': 'insights-collector.newrelic.com';
