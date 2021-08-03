@@ -9,7 +9,6 @@ jobs:
         id: hello
         uses: danifitz/newrelic-action@v0.2
         with:
-          who-to-greet: 'Mona the Octocat'
           region: 'US'
           account-id: 2137428
           insert-key: ${{ secrets.INSERT_KEY }}
