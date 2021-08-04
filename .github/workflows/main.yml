@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: danifitz/newrelic-action@v0.9
+        uses: danifitz/newrelic-action@v0.9.1
         with:
           region: 'US'
           account-id: 2137428
