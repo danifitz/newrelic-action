@@ -6302,11 +6302,10 @@ const sendToNewRelic = (region, accountId, insertKey, event) => {
   }
   
   const req = https.request(options, res => {
-    console.log(`POST to New Relic statusCode: ${res.statusCode}`)
+    console.log(`POST to ${nrUrl} statusCode: ${res.statusCode}`)
   
     res.on('data', d => {
-      process.stdout.write(d)
-      console.log('Finished request with result', d);
+      console.log('Finished request with result', d.toString());
     })
   })
   
@@ -6323,6 +6322,7 @@ try {
   const region = core.getInput('region');
   const accountId = core.getInput('account-id');
   const insertKey = core.getInput('insert-key');
+  console.log('insert key length', insertKey.length);
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
