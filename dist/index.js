@@ -6330,6 +6330,8 @@ try {
   const context = JSON.stringify(github.context, undefined, 2);
   console.log(`The context: ${context}`);
 
+  console.log('The steps: ', JSON.stringify(github.steps));
+
   const eventType = core.getInput('event-name');
   const nrEvent = {
     // set the new relic event type
