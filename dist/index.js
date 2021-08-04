@@ -6284,8 +6284,7 @@ const github = __nccwpck_require__(28);
 const https = __nccwpck_require__(211);
 
 const sendToNewRelic = (region, accountId, insertKey, event) => {
-  const data = new TextEncoder().encode(JSON.stringify(event));
-  console.log(`Sending event data to nr: ${JSON.stringify(event)}`);
+  const data = JSON.stringify(event);
   
   // set the correct URL for Event API depending on region
   const nrUrl = region == 'EU' ? 'insights-collector.eu01.nr-data.net': 'insights-collector.newrelic.com';
@@ -6306,7 +6305,7 @@ const sendToNewRelic = (region, accountId, insertKey, event) => {
     console.log(`POST to New Relic statusCode: ${res.statusCode}`)
   
     res.on('data', d => {
-      // process.stdout.write(d)
+      process.stdout.write(d)
       console.log('Finished request with result', d);
     })
   })
