@@ -21,15 +21,15 @@ const sendToNewRelic = (region, accountId, insertKey, event) => {
   }
   
   const req = https.request(options, res => {
-    console.log(`POST to ${nrUrl} statusCode: ${res.statusCode}`)
+    core.info(`POST to ${nrUrl} statusCode: ${res.statusCode}`)
   
     res.on('data', d => {
-      console.log('Finished request with result', d.toString());
+      core.info(`Finished POST to ${nrUrl} with result ${d.toString()}`);
     })
   })
   
   req.on('error', error => {
-    console.error(error)
+    core.error(error)
   })
   
   req.write(data)
@@ -37,21 +37,14 @@ const sendToNewRelic = (region, accountId, insertKey, event) => {
 }
 
 try {
-  // get the New Relic region and account ID
+  // get the region, account ID, api key and eventType for sending to New Relic
   const region = core.getInput('region');
   const accountId = core.getInput('account-id');
   const insertKey = core.getInput('insert-key');
-  console.log('insert key length', insertKey.length);
-
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-
-  const context = JSON.stringify(github.context, undefined, 2);
-  // console.log(`The context: ${context}`);
-
-  console.log('The steps: ', JSON.stringify(github.steps));
-
   const eventType = core.getInput('event-name');
+
+  console.log('Github: ', JSON.stringify(github));
+
   const nrEvent = {
     // set the new relic event type
     eventType: eventType,

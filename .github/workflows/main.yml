@@ -7,11 +7,8 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: danifitz/newrelic-action@v0.9.3
+        uses: danifitz/newrelic-action@v0.9.4
         with:
           region: 'US'
           account-id: 2137428
           insert-key: ${{ secrets.INSERT_KEY }}
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
