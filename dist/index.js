@@ -6306,7 +6306,8 @@ const sendToNewRelic = (region, accountId, insertKey, event) => {
     console.log(`POST to New Relic statusCode: ${res.statusCode}`)
   
     res.on('data', d => {
-      process.stdout.write(d)
+      // process.stdout.write(d)
+      console.log('Finished request with result', d);
     })
   })
   
@@ -6328,7 +6329,7 @@ try {
   core.setOutput("time", time);
 
   const context = JSON.stringify(github.context, undefined, 2);
-  console.log(`The context: ${context}`);
+  // console.log(`The context: ${context}`);
 
   console.log('The steps: ', JSON.stringify(github.steps));
 
