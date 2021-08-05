@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Echo Hello
         id: echo-hello
-        run: echo-hello
+        run: echo hello
       - name: Send to New Relic
         id: send-to-new-relic
         uses: danifitz/newrelic-action@v0.9.5
