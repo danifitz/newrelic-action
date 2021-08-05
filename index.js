@@ -43,8 +43,6 @@ try {
   const insertKey = core.getInput('insert-key');
   const eventType = core.getInput('event-name');
 
-  console.log('Github: ', JSON.stringify(github));
-
   const nrEvent = {
     // set the new relic event type
     eventType: eventType,

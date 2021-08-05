@@ -5,9 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: danifitz/newrelic-action@v0.9.4
+      - name: Echo Hello
+        id: echo-hello
+        run: echo-hello
+      - name: Send to New Relic
+        id: send-to-new-relic
+        uses: danifitz/newrelic-action@v0.9.5
         with:
           region: 'US'
           account-id: 2137428
